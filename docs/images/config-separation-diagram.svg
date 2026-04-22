@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 490" width="1100" height="490">
+  <defs>
+    <style>
+      .title        { font-family: 'Work Sans', sans-serif; font-size: 13px; fill: #7a7a7a; letter-spacing: 2px; font-weight: 600; }
+      .region-label { font-family: 'Work Sans', sans-serif; font-size: 11px; fill: #7a7a7a; letter-spacing: 2px; font-weight: 600; }
+      .lbl-app      { font-family: 'Work Sans', sans-serif; font-size: 9px;  fill: #6db33f; letter-spacing: 2px; font-weight: 700; }
+      .lbl-infra    { font-family: 'Work Sans', sans-serif; font-size: 9px;  fill: #3a86a8; letter-spacing: 2px; font-weight: 700; }
+      .box-title    { font-family: 'Work Sans', sans-serif; font-size: 12px; fill: #111; font-weight: 700; }
+      .box-sub      { font-family: 'Open Sans', sans-serif; font-size: 9px;  fill: #7a7a7a; }
+      .gldns-text   { font-family: 'Work Sans', sans-serif; font-size: 12px; fill: #ffffff; letter-spacing: 3px; font-weight: 700; }
+      .traffic-text { font-family: 'Open Sans', sans-serif; font-size: 10px; fill: #7a7a7a; letter-spacing: 2px; }
+      .sync-text    { font-family: 'Work Sans', sans-serif; font-size: 9px;  fill: #6db33f; letter-spacing: 2px; font-weight: 600; }
+      .sync-sub     { font-family: 'Open Sans', sans-serif; font-size: 8px;  fill: #7a7a7a; letter-spacing: 1px; }
+      .legend-text  { font-family: 'Open Sans', sans-serif; font-size: 10px; fill: #4a4a4a; }
+    </style>
+    <pattern id="dashLine" patternUnits="userSpaceOnUse" width="16" height="2">
+      <rect width="8" height="2" fill="#6db33f88"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1100" height="490" fill="#ffffff"/>
+
+  <!-- TITLE -->
+  <text x="550" y="24" text-anchor="middle" class="title">CONFIGURATION OWNERSHIP MODEL</text>
+
+  <!-- TRAFFIC BADGE -->
+  <rect x="450" y="32" width="200" height="24" rx="6" fill="#f9fdf7" stroke="#d9e9e9" stroke-width="1"/>
+  <text x="550" y="49" text-anchor="middle" class="traffic-text">↓ INCOMING TRAFFIC</text>
+
+  <!-- Arrow down to GLDNS -->
+  <line x1="550" y1="56" x2="550" y2="72" stroke="#aaa" stroke-width="1.5"/>
+  <polygon points="550,76 545,68 555,68" fill="#aaa"/>
+
+  <!-- GLDNS BAR -->
+  <rect x="28" y="78" width="1044" height="34" rx="8" fill="#191e1e"/>
+  <text x="550" y="100" text-anchor="middle" class="gldns-text">GLDNS — GLOBAL LOAD / DNS</text>
+
+  <!-- Split arrows -->
+  <line x1="240" y1="112" x2="240" y2="128" stroke="#aaa" stroke-width="1.5"/>
+  <polygon points="240,132 235,124 245,124" fill="#aaa"/>
+  <line x1="860" y1="112" x2="860" y2="128" stroke="#aaa" stroke-width="1.5"/>
+  <polygon points="860,132 855,124 865,124" fill="#aaa"/>
+
+  <!-- ── REGION 1  x=28 y=136 w=494 h=296 ── -->
+  <rect x="28" y="136" width="494" height="296" rx="10" fill="#f9fdf7" stroke="#ebf2f2" stroke-width="1.5"/>
+  <text x="44" y="156" class="region-label">REGION 1</text>
+
+  <!-- App layer R1 -->
+  <rect x="44" y="162" width="462" height="118" rx="7" fill="#ffffff" stroke="#6db33f" stroke-width="1.5" stroke-opacity="0.6"/>
+  <text x="56" y="177" class="lbl-app">▲ APP TEAM CONFIG</text>
+
+  <rect x="56" y="182" width="438" height="38" rx="5" fill="#f9fdf7" stroke="#6db33f22" stroke-width="1"/>
+  <text x="70" y="198" class="box-title">📦  Application</text>
+  <text x="70" y="212" class="box-sub">Same artifact in every region · Env-agnostic by design</text>
+
+  <rect x="56" y="226" width="438" height="48" rx="5" fill="#f2fbed" stroke="#6db33f55" stroke-width="1"/>
+  <text x="70" y="241" class="box-title">⚙️  App Config</text>
+  <text x="70" y="254" class="box-sub">greeting=Howdy → Hello</text>
+  <text x="70" y="266" class="box-sub">feature flags, observability</text>
+
+  <!-- Infra layer R1 -->
+  <rect x="44" y="288" width="462" height="136" rx="7" fill="#ffffff" stroke="#3a86a8" stroke-width="1.5" stroke-dasharray="6,4" stroke-opacity="0.65"/>
+  <rect x="54" y="280" width="186" height="14" fill="#f9fdf7"/>
+  <text x="58" y="291" class="lbl-infra">▼ INFRA / PLATFORM CONFIG</text>
+
+  <rect x="56" y="296" width="438" height="36" rx="5" fill="#f9fdf7" stroke="#3a86a822" stroke-width="1"/>
+  <text x="70" y="311" class="box-title">🔐  Secret Store</text>
+  <text x="70" y="324" class="box-sub">Vault, Credhub · credentials, certs</text>
+
+  <rect x="56" y="338" width="438" height="46" rx="5" fill="#f0f6fa" stroke="#3a86a855" stroke-width="1"/>
+  <text x="70" y="353" class="box-title">🔧  Config Server</text>
+  <text x="70" y="366" class="box-sub">vault.url, service discovery</text>
+  <text x="70" y="378" class="box-sub">env-specific endpoints</text>
+
+  <rect x="56" y="390" width="438" height="36" rx="5" fill="#f9fdf7" stroke="#3a86a822" stroke-width="1"/>
+  <text x="70" y="405" class="box-title">🔍  Discovery Server</text>
+  <text x="70" y="418" class="box-sub">eureka.uri, mesh config</text>
+
+  <!-- ── REGION 2  x=578 y=136 w=494 h=296 ── -->
+  <rect x="578" y="136" width="494" height="296" rx="10" fill="#f9fdf7" stroke="#ebf2f2" stroke-width="1.5"/>
+  <text x="594" y="156" class="region-label">REGION 2</text>
+
+  <!-- App layer R2 -->
+  <rect x="594" y="162" width="462" height="118" rx="7" fill="#ffffff" stroke="#6db33f" stroke-width="1.5" stroke-opacity="0.6"/>
+  <text x="606" y="177" class="lbl-app">▲ APP TEAM CONFIG</text>
+
+  <rect x="606" y="182" width="438" height="38" rx="5" fill="#f9fdf7" stroke="#6db33f22" stroke-width="1"/>
+  <text x="620" y="198" class="box-title">📦  Application</text>
+  <text x="620" y="212" class="box-sub">Same artifact in every region · Env-agnostic by design</text>
+
+  <rect x="606" y="226" width="438" height="48" rx="5" fill="#f2fbed" stroke="#6db33f55" stroke-width="1"/>
+  <text x="620" y="241" class="box-title">⚙️  App Config</text>
+  <text x="620" y="254" class="box-sub">greeting=Howdy → Hello</text>
+  <text x="620" y="266" class="box-sub">feature flags, observability</text>
+
+  <!-- Infra layer R2 -->
+  <rect x="594" y="288" width="462" height="136" rx="7" fill="#ffffff" stroke="#3a86a8" stroke-width="1.5" stroke-dasharray="6,4" stroke-opacity="0.65"/>
+  <rect x="604" y="280" width="186" height="14" fill="#f9fdf7"/>
+  <text x="608" y="291" class="lbl-infra">▼ INFRA / PLATFORM CONFIG</text>
+
+  <rect x="606" y="296" width="438" height="36" rx="5" fill="#f9fdf7" stroke="#3a86a822" stroke-width="1"/>
+  <text x="620" y="311" class="box-title">🔐  Secret Store</text>
+  <text x="620" y="324" class="box-sub">Vault, Credhub · credentials, certs</text>
+
+  <rect x="606" y="338" width="438" height="46" rx="5" fill="#f0f6fa" stroke="#3a86a855" stroke-width="1"/>
+  <text x="620" y="353" class="box-title">🔧  Config Server</text>
+  <text x="620" y="366" class="box-sub">vault.url, service discovery</text>
+  <text x="620" y="378" class="box-sub">env-specific endpoints</text>
+
+  <rect x="606" y="390" width="438" height="36" rx="5" fill="#f9fdf7" stroke="#3a86a822" stroke-width="1"/>
+  <text x="620" y="405" class="box-title">🔍  Discovery Server</text>
+  <text x="620" y="418" class="box-sub">eureka.uri, mesh config</text>
+
+  <!-- DATA REPLICATION -->
+  <rect x="44"  y="449" width="456" height="2" fill="url(#dashLine)"/>
+  <rect x="600" y="449" width="456" height="2" fill="url(#dashLine)"/>
+  <rect x="450" y="438" width="200" height="24" rx="12" fill="#f9fdf7" stroke="#d9e9e9" stroke-width="1"/>
+  <text x="550" y="453" text-anchor="middle" class="sync-text">⇄ DATA REPLICATION</text>
+  <text x="550" y="466" text-anchor="middle" class="sync-sub">Platform concern — app team not involved</text>
+
+  <!-- LEGEND -->
+  <line x1="28"  y1="480" x2="48"  y2="480" stroke="#6db33f" stroke-width="2.5"/>
+  <text x="54"  y="484" class="legend-text">App team owns — changes deploy everywhere</text>
+  <line x1="330" y1="480" x2="350" y2="480" stroke="#3a86a8" stroke-width="2.5"/>
+  <text x="356" y="484" class="legend-text">Platform team owns — scoped to environment</text>
+  <line x1="670" y1="480" x2="690" y2="480" stroke="#7a7a7a" stroke-width="2" stroke-dasharray="4,3"/>
+  <text x="696" y="484" class="legend-text">Dashed = infra concern zone</text>
+</svg>
