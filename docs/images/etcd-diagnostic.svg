@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 420">
+  <defs>
+    <style>
+      .title      { font-family:'Work Sans',sans-serif; font-size:13px; fill:#7a7a7a; letter-spacing:2px; font-weight:600; }
+      .cause-head { font-family:'Work Sans',sans-serif; font-size:11px; fill:#111; font-weight:700; }
+      .cause-sub  { font-family:'Open Sans',sans-serif; font-size:9px;  fill:#4a4a4a; }
+      .fix-head   { font-family:'Work Sans',sans-serif; font-size:10px; font-weight:700; }
+      .fix-sub    { font-family:'Open Sans',sans-serif; font-size:9px;  fill:#4a4a4a; }
+      .seg-pct    { font-family:'Work Sans',sans-serif; font-size:11px; fill:#fff; font-weight:700; }
+      .limit-lbl  { font-family:'Work Sans',sans-serif; font-size:10px; fill:#c0392b; font-weight:700; letter-spacing:1px; }
+      .etcd-lbl   { font-family:'Work Sans',sans-serif; font-size:10px; fill:#7a7a7a; letter-spacing:2px; }
+    </style>
+  </defs>
+
+  <rect width="1100" height="420" fill="#fff"/>
+
+  <text x="550" y="24" text-anchor="middle" class="title">WHAT IS FILLING YOUR ETCD? — ROOT CAUSE BREAKDOWN</text>
+
+  <!-- etcd container outline -->
+  <rect x="50" y="168" width="990" height="76" rx="6" fill="#f9fdf7" stroke="#d9e9e9" stroke-width="1.5"/>
+  <text x="34" y="210" text-anchor="end" class="etcd-lbl">etcd</text>
+
+  <!-- Segment 1: Secrets in ConfigMaps — 38% → 376px  x=50..426 -->
+  <rect x="50"  y="168" width="376" height="76" rx="0" fill="#c0392b"/>
+  <rect x="50"  y="168" width="6"   height="76" rx="6" fill="#c0392b"/><!-- left cap -->
+  <text x="238" y="210" text-anchor="middle" class="seg-pct">38%</text>
+
+  <!-- Segment 2: Large non-config content — 27% → 267px  x=426..693 -->
+  <rect x="426" y="168" width="267" height="76" fill="#d67c2a"/>
+  <text x="560" y="210" text-anchor="middle" class="seg-pct">27%</text>
+
+  <!-- Segment 3: Per-env duplication — 23% → 228px  x=693..921 -->
+  <rect x="693" y="168" width="228" height="76" fill="#3a86a8"/>
+  <text x="807" y="210" text-anchor="middle" class="seg-pct">23%</text>
+
+  <!-- Segment 4: Unbounded growth — 12% → 119px  x=921..1040 -->
+  <rect x="921" y="168" width="119" height="76" fill="#7a7a7a"/>
+  <rect x="1027" y="168" width="13"  height="76" rx="6" fill="#7a7a7a"/><!-- right cap -->
+  <text x="980" y="210" text-anchor="middle" class="seg-pct">12%</text>
+
+  <!-- 4 GB limit line -->
+  <line x1="1040" y1="148" x2="1040" y2="268" stroke="#c0392b" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="1046" y="158" class="limit-lbl">4 GB</text>
+  <text x="1046" y="170" class="limit-lbl">LIMIT</text>
+
+  <!-- Divider lines between segments -->
+  <line x1="426" y1="168" x2="426" y2="244" stroke="#fff" stroke-width="1.5"/>
+  <line x1="693" y1="168" x2="693" y2="244" stroke="#fff" stroke-width="1.5"/>
+  <line x1="921" y1="168" x2="921" y2="244" stroke="#fff" stroke-width="1.5"/>
+
+  <!-- ── CAUSE LABELS ABOVE BAR ── -->
+
+  <!-- Cause 1 (center x=238) -->
+  <line x1="238" y1="148" x2="238" y2="166" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="238" y="96"  text-anchor="middle" class="cause-head" fill="#c0392b">Secrets in ConfigMaps</text>
+  <text x="238" y="110" text-anchor="middle" class="cause-sub">Verbose, frequently rotated.</text>
+  <text x="238" y="122" text-anchor="middle" class="cause-sub">etcd stores every revision.</text>
+  <text x="238" y="136" text-anchor="middle" class="cause-sub">Also a security risk — not encrypted at rest.</text>
+
+  <!-- Cause 2 (center x=560) -->
+  <line x1="560" y1="148" x2="560" y2="166" stroke="#d67c2a" stroke-width="1.5"/>
+  <text x="560" y="96"  text-anchor="middle" class="cause-head" fill="#d67c2a">Large Non-Config Content</text>
+  <text x="560" y="110" text-anchor="middle" class="cause-sub">Keystores, CA bundles,</text>
+  <text x="560" y="122" text-anchor="middle" class="cause-sub">large JSON reference data,</text>
+  <text x="560" y="136" text-anchor="middle" class="cause-sub">templated SQL scripts.</text>
+
+  <!-- Cause 3 (center x=807) -->
+  <line x1="807" y1="148" x2="807" y2="166" stroke="#3a86a8" stroke-width="1.5"/>
+  <text x="807" y="96"  text-anchor="middle" class="cause-head" fill="#3a86a8">Per-Environment Duplication</text>
+  <text x="807" y="110" text-anchor="middle" class="cause-sub">Full ConfigMap copied for each</text>
+  <text x="807" y="122" text-anchor="middle" class="cause-sub">env: dev, staging, prod, dr…</text>
+  <text x="807" y="136" text-anchor="middle" class="cause-sub">Same data stored N times.</text>
+
+  <!-- Cause 4 (center x=980) -->
+  <line x1="972" y1="148" x2="972" y2="166" stroke="#7a7a7a" stroke-width="1.5"/>
+  <text x="972" y="110" text-anchor="middle" class="cause-head" fill="#7a7a7a">Unbounded</text>
+  <text x="972" y="123" text-anchor="middle" class="cause-head" fill="#7a7a7a">Growth</text>
+  <text x="972" y="136" text-anchor="middle" class="cause-sub">Orphaned ConfigMaps</text>
+  <!-- shifted cause4 line to x=972 since label is shifted -->
+
+  <!-- ── FIX LABELS BELOW BAR ── -->
+
+  <!-- Fix 1 -->
+  <line x1="238" y1="246" x2="238" y2="264" stroke="#c0392b" stroke-width="1.5"/>
+  <rect x="60"  y="266" width="358" height="58" rx="6" fill="#fdf0ee" stroke="#c0392b44" stroke-width="1"/>
+  <text x="239" y="283" text-anchor="middle" class="fix-head" fill="#c0392b">→ Migrate to Vault</text>
+  <text x="239" y="297" text-anchor="middle" class="fix-sub">One Vault KV path per secret.</text>
+  <text x="239" y="310" text-anchor="middle" class="fix-sub">Rotation, audit, and access control included.</text>
+
+  <!-- Fix 2 -->
+  <line x1="560" y1="246" x2="560" y2="264" stroke="#d67c2a" stroke-width="1.5"/>
+  <rect x="432" y="266" width="256" height="58" rx="6" fill="#fdf5ed" stroke="#d67c2a44" stroke-width="1"/>
+  <text x="560" y="283" text-anchor="middle" class="fix-head" fill="#d67c2a">→ Config Server Git repo</text>
+  <text x="560" y="297" text-anchor="middle" class="fix-sub">No meaningful size limit.</text>
+  <text x="560" y="310" text-anchor="middle" class="fix-sub">Version-controlled + reviewable.</text>
+
+  <!-- Fix 3 -->
+  <line x1="807" y1="246" x2="807" y2="264" stroke="#3a86a8" stroke-width="1.5"/>
+  <rect x="700" y="266" width="212" height="58" rx="6" fill="#f0f6fa" stroke="#3a86a844" stroke-width="1"/>
+  <text x="806" y="283" text-anchor="middle" class="fix-head" fill="#3a86a8">→ Kustomize Overlays</text>
+  <text x="806" y="297" text-anchor="middle" class="fix-sub">One base ConfigMap.</text>
+  <text x="806" y="310" text-anchor="middle" class="fix-sub">Patch only the delta per env.</text>
+
+  <!-- Fix 4 -->
+  <line x1="972" y1="246" x2="972" y2="264" stroke="#7a7a7a" stroke-width="1.5"/>
+  <rect x="924" y="266" width="116" height="58" rx="6" fill="#f5f5f5" stroke="#7a7a7a44" stroke-width="1"/>
+  <text x="982" y="283" text-anchor="middle" class="fix-head" fill="#7a7a7a">→ Lifecycle</text>
+  <text x="982" y="297" text-anchor="middle" class="fix-head" fill="#7a7a7a">Management</text>
+  <text x="982" y="310" text-anchor="middle" class="fix-sub">CI/CD cleanup step.</text>
+
+  <!-- Bottom hint -->
+  <text x="550" y="356" text-anchor="middle" style="font-family:'Open Sans',sans-serif;font-size:9px;fill:#7a7a7a;">
+    Audit: kubectl get configmaps -A   ·   Any ConfigMap over 100 KB is worth investigating
+  </text>
+
+  <!-- Warning badge -->
+  <rect x="390" y="370" width="320" height="32" rx="8" fill="#fdf0ee" stroke="#c0392b66" stroke-width="1"/>
+  <text x="550" y="391" text-anchor="middle" style="font-family:'Work Sans',sans-serif;font-size:11px;fill:#c0392b;font-weight:700;">
+    ⚠  You want to know at 2 GB — not at 3.9 GB
+  </text>
+</svg>

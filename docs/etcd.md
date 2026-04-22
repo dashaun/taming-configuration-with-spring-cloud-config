@@ -9,16 +9,13 @@ Notes:
 
 ---
 
-## The 4 GB etcd Limit
-
-> etcd stores all Kubernetes objects — including ConfigMaps.
-> The default limit is **4 GB**. When you hit it, **the cluster stops accepting writes.**
-
-This is not a storage problem. It's a **config hygiene problem.**
+![etcd Root Cause Breakdown](./images/etcd-diagnostic.svg)
 
 Notes:
 - etcd doesn't compress. Every ConfigMap byte counts.
-- Hitting the limit is a production incident. Preventing it is a config architecture decision.
+- Hitting the limit stops the entire cluster from accepting writes — it's a production incident, not a storage ticket.
+- The four segments are ordered by typical real-world impact. Secrets in ConfigMaps is almost always the biggest contributor and the highest-priority fix.
+- The goal is to know at 2 GB, not 3.9 GB — set up a size alert before you need it.
 
 ---
 

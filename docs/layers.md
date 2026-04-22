@@ -237,25 +237,9 @@ Notes:
 
 ## Vault + ConfigMap: The Architecture
 
-```
-┌─────────────┐    startup    ┌────────────────┐
-│  Spring App │──────────────▶│  Spring Cloud  │
-│             │               │     Vault      │
-│             │◀──────────────│  (secrets)     │
-│             │  resolved     └────────────────┘
-│             │  properties
-│             │    startup    ┌────────────────┐
-│             │──────────────▶│  Spring Cloud  │
-│             │               │  Config Server │
-│             │◀──────────────│  (shared cfg)  │
-│             │               └────────────────┘
-│             │
-│             │  mounted      ┌────────────────┐
-│             │◀──────────────│   ConfigMap    │
-│             │               │  (app tuning)  │
-└─────────────┘               └────────────────┘
-```
+![Spring App Startup Sequence](./images/startup-sequence.svg)
 
 Notes:
-- Boot ordering matters: Vault runs in bootstrap context → Config Server → application context → ConfigMap mount.
-- Vault secrets are available when Config Server properties are resolved — so Config Server config can reference Vault-resolved values.
+- Boot ordering matters: Vault runs in bootstrap context first, then Config Server, then the application context, then the ConfigMap volume is mounted.
+- Because Vault resolves before Config Server, your Config Server properties can reference Vault-resolved values — e.g. a shared db.url that includes a Vault-resolved credential.
+- The ConfigMap is mounted by Kubernetes at runtime; Spring Boot auto-detects application.yaml at /config.

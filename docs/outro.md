@@ -59,33 +59,12 @@ Notes:
 
 ---
 
-## The Decision Flow at a Glance
-
-```
-Is it sensitive (secret, credential, key)?
-  └─ YES → Vault
-
-Is it environment-specific?
-  └─ YES → Externalize it
-             └─ Shared across apps? → Spring Cloud Config
-             └─ App-specific?       → Kubernetes ConfigMap
-
-Could it change without a redeploy?
-  └─ YES → Externalize it (consider @RefreshScope)
-
-Is it shared across multiple apps?
-  └─ YES → Spring Cloud Config
-
-Is it app-specific tuning?
-  └─ YES → Kubernetes ConfigMap
-
-None of the above?
-  └─ application.properties (document why)
-```
+![Decision Flowchart](./images/decision-flowchart.svg)
 
 Notes:
 - First "yes" wins. Sensitivity always wins first.
-- Print this. Put it in your team wiki. Reference it in PR reviews when someone asks "where should this go?"
+- Walk through the diamonds left-to-right: sensitive → env-specific → runtime changeable → shared → app-specific → default.
+- This is the take-home artifact. Put it in your team wiki. Reference it in PR reviews when someone asks "where should this go?"
 
 ---
 

@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 380">
+  <defs>
+    <style>
+      .panel-hdr  { font-family:'Work Sans',sans-serif; font-size:11px; fill:#fff; font-weight:700; letter-spacing:1px; }
+      .box-title  { font-family:'Work Sans',sans-serif; font-size:12px; fill:#111; font-weight:700; }
+      .box-sub    { font-family:'Open Sans',sans-serif; font-size:9px;  fill:#7a7a7a; }
+      .arrow-lbl  { font-family:'Open Sans',sans-serif; font-size:9px;  fill:#4a4a4a; }
+      .phase-note { font-family:'Open Sans',sans-serif; font-size:9px;  fill:#7a7a7a; font-style:italic; }
+      .title      { font-family:'Work Sans',sans-serif; font-size:13px; fill:#7a7a7a; letter-spacing:2px; font-weight:600; }
+    </style>
+    <marker id="arr" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#4a4a4a"/></marker>
+    <marker id="arrG" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#6db33f"/></marker>
+    <marker id="arrT" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#3a86a8"/></marker>
+  </defs>
+
+  <rect width="1100" height="380" fill="#fff"/>
+
+  <text x="550" y="24" text-anchor="middle" class="title">SPRING APP STARTUP — PROPERTY SOURCE RESOLUTION ORDER</text>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- PANEL 1: Bootstrap — Vault  x=20        -->
+  <!-- ════════════════════════════════════════ -->
+  <rect x="20" y="38" width="336" height="300" rx="10" fill="#f9fdf7" stroke="#6db33f" stroke-width="1.5" stroke-opacity="0.5"/>
+  <!-- header -->
+  <rect x="20" y="38" width="336" height="32" rx="10" fill="#6db33f"/>
+  <rect x="20" y="58" width="336" height="12" fill="#6db33f"/>
+  <text x="188" y="59" text-anchor="middle" class="panel-hdr">① BOOTSTRAP CONTEXT — VAULT FIRST</text>
+
+  <!-- Spring App box -->
+  <rect x="40" y="90" width="140" height="50" rx="6" fill="#fff" stroke="#6db33f" stroke-width="1.5"/>
+  <text x="110" y="112" text-anchor="middle" class="box-title">Spring App</text>
+  <text x="110" y="126" text-anchor="middle" class="box-sub">starting up…</text>
+
+  <!-- Vault box -->
+  <rect x="200" y="90" width="140" height="50" rx="6" fill="#f2fbed" stroke="#6db33f" stroke-width="1.5"/>
+  <text x="270" y="112" text-anchor="middle" class="box-title">🔐 Vault</text>
+  <text x="270" y="126" text-anchor="middle" class="box-sub">KV secrets engine</text>
+
+  <!-- Arrow: App → Vault (auth) -->
+  <line x1="180" y1="107" x2="198" y2="107" stroke="#6db33f" stroke-width="1.5" marker-end="url(#arrG)"/>
+  <text x="189" y="102" text-anchor="middle" class="arrow-lbl">k8s auth token</text>
+
+  <!-- Arrow: Vault → App (secrets) -->
+  <line x1="200" y1="123" x2="182" y2="123" stroke="#6db33f" stroke-width="1.5" marker-end="url(#arrG)"/>
+  <text x="191" y="135" text-anchor="middle" class="arrow-lbl">secrets resolved</text>
+
+  <!-- Resolved properties list -->
+  <rect x="40" y="162" width="296" height="80" rx="5" fill="#fff" stroke="#ebf2f2" stroke-width="1"/>
+  <text x="56" y="178" class="box-sub" fill="#111" style="font-weight:700;">Resolved into Spring Environment:</text>
+  <text x="56" y="194" class="box-sub" style="font-family:'Courier New',monospace;">db.password   = ••••••••</text>
+  <text x="56" y="208" class="box-sub" style="font-family:'Courier New',monospace;">api.key       = ••••••••</text>
+  <text x="56" y="222" class="box-sub" style="font-family:'Courier New',monospace;">tls.cert      = ••••••••</text>
+
+  <text x="188" y="272" text-anchor="middle" class="phase-note">Runs before Config Server.</text>
+  <text x="188" y="286" text-anchor="middle" class="phase-note">Config Server may reference Vault-resolved values.</text>
+
+  <!-- Boot ordering note -->
+  <rect x="40" y="298" width="296" height="28" rx="5" fill="#6db33f22" stroke="#6db33f44" stroke-width="1"/>
+  <text x="188" y="312" text-anchor="middle" class="box-sub" fill="#3a6e1a" style="font-weight:700;">spring.cloud.vault in bootstrap.yml</text>
+  <text x="188" y="324" text-anchor="middle" class="box-sub">authentication: KUBERNETES</text>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- PANEL 2: Bootstrap — Config Server x=382 -->
+  <!-- ════════════════════════════════════════ -->
+  <rect x="382" y="38" width="336" height="300" rx="10" fill="#f9fdf7" stroke="#3a86a8" stroke-width="1.5" stroke-opacity="0.5"/>
+  <rect x="382" y="38" width="336" height="32" rx="10" fill="#3a86a8"/>
+  <rect x="382" y="58" width="336" height="12" fill="#3a86a8"/>
+  <text x="550" y="59" text-anchor="middle" class="panel-hdr">② BOOTSTRAP CONTEXT — CONFIG SERVER</text>
+
+  <!-- Spring App -->
+  <rect x="402" y="90" width="130" height="50" rx="6" fill="#fff" stroke="#3a86a8" stroke-width="1.5"/>
+  <text x="467" y="112" text-anchor="middle" class="box-title">Spring App</text>
+  <text x="467" y="126" text-anchor="middle" class="box-sub">secrets loaded ✓</text>
+
+  <!-- Config Server -->
+  <rect x="552" y="90" width="140" height="50" rx="6" fill="#f0f6fa" stroke="#3a86a8" stroke-width="1.5"/>
+  <text x="622" y="107" text-anchor="middle" class="box-title">🔧 Config</text>
+  <text x="622" y="120" text-anchor="middle" class="box-title">Server</text>
+  <text x="622" y="133" text-anchor="middle" class="box-sub">:8888</text>
+
+  <!-- Git repo below Config Server -->
+  <rect x="552" y="162" width="140" height="42" rx="6" fill="#f9fdf7" stroke="#ebf2f2" stroke-width="1"/>
+  <text x="622" y="179" text-anchor="middle" class="box-title">📁 Git Repo</text>
+  <text x="622" y="193" text-anchor="middle" class="box-sub">config-repo / main</text>
+
+  <!-- Arrow: App → Config Server -->
+  <line x1="532" y1="107" x2="550" y2="107" stroke="#3a86a8" stroke-width="1.5" marker-end="url(#arrT)"/>
+  <text x="541" y="101" text-anchor="middle" class="arrow-lbl">fetch</text>
+
+  <!-- Arrow: Config Server → App (shared config) -->
+  <line x1="552" y1="123" x2="534" y2="123" stroke="#3a86a8" stroke-width="1.5" marker-end="url(#arrT)"/>
+  <text x="542" y="136" text-anchor="middle" class="arrow-lbl">shared config</text>
+
+  <!-- Arrow: Config Server → Git -->
+  <line x1="622" y1="140" x2="622" y2="160" stroke="#7a7a7a" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="634" y="155" class="arrow-lbl">pull</text>
+
+  <!-- Resolved properties list -->
+  <rect x="402" y="218" width="296" height="68" rx="5" fill="#fff" stroke="#ebf2f2" stroke-width="1"/>
+  <text x="418" y="234" class="box-sub" fill="#111" style="font-weight:700;">Resolved into Spring Environment:</text>
+  <text x="418" y="250" class="box-sub" style="font-family:'Courier New',monospace;">db.url         = jdbc:pg://prod…</text>
+  <text x="418" y="264" class="box-sub" style="font-family:'Courier New',monospace;">gateway.url    = https://gw.internal</text>
+  <text x="418" y="278" class="box-sub" style="font-family:'Courier New',monospace;">feature.flags  = { … }</text>
+
+  <rect x="402" y="298" width="296" height="28" rx="5" fill="#3a86a822" stroke="#3a86a844" stroke-width="1"/>
+  <text x="550" y="312" text-anchor="middle" class="box-sub" fill="#1a4a5c" style="font-weight:700;">spring.cloud.config in bootstrap.yml</text>
+  <text x="550" y="324" text-anchor="middle" class="box-sub">fail-fast: true · retry: max-attempts: 6</text>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- PANEL 3: Runtime — ConfigMap  x=744     -->
+  <!-- ════════════════════════════════════════ -->
+  <rect x="744" y="38" width="336" height="300" rx="10" fill="#f9fdf7" stroke="#4a4a4a" stroke-width="1.5" stroke-opacity="0.4"/>
+  <rect x="744" y="38" width="336" height="32" rx="10" fill="#4a4a4a"/>
+  <rect x="744" y="58" width="336" height="12" fill="#4a4a4a"/>
+  <text x="912" y="59" text-anchor="middle" class="panel-hdr">③ KUBERNETES RUNTIME — CONFIGMAP</text>
+
+  <!-- ConfigMap -->
+  <rect x="764" y="90" width="140" height="50" rx="6" fill="#f9fdf7" stroke="#4a4a4a" stroke-width="1"/>
+  <text x="834" y="112" text-anchor="middle" class="box-title">📋 ConfigMap</text>
+  <text x="834" y="126" text-anchor="middle" class="box-sub">payments-service-config</text>
+
+  <!-- Spring App -->
+  <rect x="924" y="90" width="140" height="50" rx="6" fill="#fff" stroke="#6db33f" stroke-width="1.5"/>
+  <text x="994" y="107" text-anchor="middle" class="box-title">Spring App</text>
+  <text x="994" y="120" text-anchor="middle" class="box-title">running ✓</text>
+  <text x="994" y="133" text-anchor="middle" class="box-sub">all config resolved</text>
+
+  <!-- Arrow: ConfigMap → App -->
+  <line x1="904" y1="115" x2="922" y2="115" stroke="#4a4a4a" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="913" y="108" text-anchor="middle" class="arrow-lbl">volume</text>
+  <text x="913" y="128" text-anchor="middle" class="arrow-lbl">mount</text>
+
+  <!-- Mount path note -->
+  <rect x="764" y="162" width="296" height="42" rx="5" fill="#fff" stroke="#ebf2f2" stroke-width="1"/>
+  <text x="780" y="178" class="box-sub" fill="#111" style="font-weight:700;">Mounted at /config/application.yaml</text>
+  <text x="780" y="193" class="box-sub" style="font-family:'Courier New',monospace;">Spring Boot auto-detects external config</text>
+
+  <!-- ConfigMap contents -->
+  <rect x="764" y="218" width="296" height="68" rx="5" fill="#fff" stroke="#ebf2f2" stroke-width="1"/>
+  <text x="780" y="234" class="box-sub" fill="#111" style="font-weight:700;">App-specific tuning (non-sensitive):</text>
+  <text x="780" y="250" class="box-sub" style="font-family:'Courier New',monospace;">payments.timeout-ms    = 5000</text>
+  <text x="780" y="264" class="box-sub" style="font-family:'Courier New',monospace;">payments.max-retries   = 3</text>
+  <text x="780" y="278" class="box-sub" style="font-family:'Courier New',monospace;">payments.thread-pool   = 20</text>
+
+  <rect x="764" y="298" width="296" height="28" rx="5" fill="#4a4a4a22" stroke="#4a4a4a44" stroke-width="1"/>
+  <text x="912" y="312" text-anchor="middle" class="box-sub" fill="#111" style="font-weight:700;">ConfigMap lean rule</text>
+  <text x="912" y="324" text-anchor="middle" class="box-sub">Only values Kubernetes needs to manage directly</text>
+
+  <!-- Bottom precedence note -->
+  <text x="550" y="360" text-anchor="middle" style="font-family:'Work Sans',sans-serif;font-size:10px;fill:#7a7a7a;">
+    Property source precedence (highest → lowest): ConfigMap / Config Server &gt; application.properties in JAR &gt; defaults
+  </text>
+</svg>

@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 490">
+  <defs>
+    <style>
+      .title     { font-family:'Work Sans',sans-serif; font-size:13px; fill:#7a7a7a; letter-spacing:2px; font-weight:600; }
+      .q-text    { font-family:'Work Sans',sans-serif; font-size:12px; fill:#111; font-weight:700; }
+      .yn-label  { font-family:'Work Sans',sans-serif; font-size:10px; font-weight:700; }
+      .dest-main { font-family:'Work Sans',sans-serif; font-size:12px; fill:#fff; font-weight:700; }
+      .dest-sub  { font-family:'Open Sans',sans-serif; font-size:9px;  fill:rgba(255,255,255,0.82); }
+      .start-lbl { font-family:'Work Sans',sans-serif; font-size:10px; fill:#7a7a7a; letter-spacing:1px; }
+    </style>
+    <marker id="arrowGray"  markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#aaa"/></marker>
+    <marker id="arrowGreen" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#6db33f"/></marker>
+    <marker id="arrowTeal"  markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#3a86a8"/></marker>
+    <marker id="arrowDark"  markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#4a4a4a"/></marker>
+  </defs>
+
+  <rect width="1100" height="490" fill="#fff"/>
+
+  <!-- Title -->
+  <text x="550" y="24" text-anchor="middle" class="title">SHOULD I EXTERNALIZE IT? — DECISION FLOWCHART</text>
+
+  <!-- START -->
+  <circle cx="300" cy="52" r="16" fill="#191e1e"/>
+  <text x="300" y="57" text-anchor="middle" class="start-lbl" fill="#fff">START</text>
+  <line x1="300" y1="68" x2="300" y2="77" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+
+  <!-- ── Q1: Sensitive? cy=103 ── -->
+  <polygon points="185,103 300,77 415,103 300,129" fill="#fff" stroke="#191e1e" stroke-width="1.5"/>
+  <text x="300" y="107" text-anchor="middle" class="q-text">Is it sensitive?</text>
+  <!-- YES right -->
+  <line x1="415" y1="103" x2="555" y2="103" stroke="#6db33f" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+  <text x="485" y="97" text-anchor="middle" class="yn-label" fill="#6db33f">YES</text>
+  <!-- dest: Vault -->
+  <rect x="556" y="84" width="260" height="38" rx="6" fill="#6db33f"/>
+  <text x="686" y="100" text-anchor="middle" class="dest-main">🔐  Vault</text>
+  <text x="686" y="114" text-anchor="middle" class="dest-sub">no exceptions — rotation, audit, access control</text>
+  <!-- NO down -->
+  <line x1="300" y1="129" x2="300" y2="153" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+  <text x="278" y="144" text-anchor="middle" class="yn-label" fill="#aaa">NO</text>
+
+  <!-- ── Q2: Env-specific? cy=179 ── -->
+  <polygon points="185,179 300,153 415,179 300,205" fill="#fff" stroke="#191e1e" stroke-width="1.5"/>
+  <text x="300" y="183" text-anchor="middle" class="q-text">Environment-specific?</text>
+  <!-- YES right -->
+  <line x1="415" y1="179" x2="555" y2="179" stroke="#3a86a8" stroke-width="1.5" marker-end="url(#arrowTeal)"/>
+  <text x="485" y="173" text-anchor="middle" class="yn-label" fill="#3a86a8">YES</text>
+  <!-- dest: two stacked boxes -->
+  <rect x="556" y="160" width="260" height="28" rx="5" fill="#3a86a8"/>
+  <text x="686" y="179" text-anchor="middle" class="dest-main">Spring Cloud Config</text>
+  <rect x="556" y="192" width="260" height="28" rx="5" fill="#5a9fc0"/>
+  <text x="686" y="211" text-anchor="middle" class="dest-main">Kubernetes ConfigMap</text>
+  <text x="686" y="235" text-anchor="middle" style="font-family:'Open Sans',sans-serif;font-size:9px;fill:#7a7a7a;">(shared → Config Server · app-specific → ConfigMap)</text>
+  <!-- NO down -->
+  <line x1="300" y1="205" x2="300" y2="229" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+  <text x="278" y="220" text-anchor="middle" class="yn-label" fill="#aaa">NO</text>
+
+  <!-- ── Q3: Runtime changeable? cy=255 ── -->
+  <polygon points="185,255 300,229 415,255 300,281" fill="#fff" stroke="#191e1e" stroke-width="1.5"/>
+  <text x="300" y="259" text-anchor="middle" class="q-text">Runtime changeable?</text>
+  <!-- YES right -->
+  <line x1="415" y1="255" x2="555" y2="255" stroke="#3a86a8" stroke-width="1.5" marker-end="url(#arrowTeal)"/>
+  <text x="485" y="249" text-anchor="middle" class="yn-label" fill="#3a86a8">YES</text>
+  <!-- dest -->
+  <rect x="556" y="236" width="260" height="38" rx="6" fill="#3a86a8"/>
+  <text x="686" y="252" text-anchor="middle" class="dest-main">Externalize</text>
+  <text x="686" y="266" text-anchor="middle" class="dest-sub">consider @RefreshScope + Spring Cloud Bus</text>
+  <!-- NO down -->
+  <line x1="300" y1="281" x2="300" y2="305" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+  <text x="278" y="296" text-anchor="middle" class="yn-label" fill="#aaa">NO</text>
+
+  <!-- ── Q4: Shared across apps? cy=331 ── -->
+  <polygon points="185,331 300,305 415,331 300,357" fill="#fff" stroke="#191e1e" stroke-width="1.5"/>
+  <text x="300" y="335" text-anchor="middle" class="q-text">Shared across apps?</text>
+  <!-- YES right -->
+  <line x1="415" y1="331" x2="555" y2="331" stroke="#3a86a8" stroke-width="1.5" marker-end="url(#arrowTeal)"/>
+  <text x="485" y="325" text-anchor="middle" class="yn-label" fill="#3a86a8">YES</text>
+  <!-- dest -->
+  <rect x="556" y="312" width="260" height="38" rx="6" fill="#3a86a8"/>
+  <text x="686" y="328" text-anchor="middle" class="dest-main">Spring Cloud Config</text>
+  <text x="686" y="342" text-anchor="middle" class="dest-sub">Git-backed · treat config as code</text>
+  <!-- NO down -->
+  <line x1="300" y1="357" x2="300" y2="381" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+  <text x="278" y="372" text-anchor="middle" class="yn-label" fill="#aaa">NO</text>
+
+  <!-- ── Q5: App-specific tuning? cy=407 ── -->
+  <polygon points="185,407 300,381 415,407 300,433" fill="#fff" stroke="#191e1e" stroke-width="1.5"/>
+  <text x="300" y="411" text-anchor="middle" class="q-text">App-specific tuning?</text>
+  <!-- YES right -->
+  <line x1="415" y1="407" x2="555" y2="407" stroke="#3a86a8" stroke-width="1.5" marker-end="url(#arrowTeal)"/>
+  <text x="485" y="401" text-anchor="middle" class="yn-label" fill="#3a86a8">YES</text>
+  <!-- dest -->
+  <rect x="556" y="388" width="260" height="38" rx="6" fill="#5a9fc0"/>
+  <text x="686" y="404" text-anchor="middle" class="dest-main">Kubernetes ConfigMap</text>
+  <text x="686" y="418" text-anchor="middle" class="dest-sub">keep lean · only what k8s needs to know</text>
+  <!-- NO down -->
+  <line x1="300" y1="433" x2="300" y2="452" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowDark)"/>
+  <text x="278" y="445" text-anchor="middle" class="yn-label" fill="#aaa">NO</text>
+
+  <!-- ── End: application.properties ── -->
+  <rect x="170" y="453" width="260" height="34" rx="6" fill="#4a4a4a"/>
+  <text x="300" y="467" text-anchor="middle" class="dest-main">application.properties</text>
+  <text x="300" y="480" text-anchor="middle" class="dest-sub">static defaults · document why it lives here</text>
+</svg>
